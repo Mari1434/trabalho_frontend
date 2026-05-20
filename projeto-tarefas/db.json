@@ -19,10 +19,10 @@
       "corFundo": "#f9a8d4"
     },
     {
-      "titulo": "Estudar Governança de TI",
-      "descricao": "Unidades 3 e 4",
-      "corFundo": "#f9f9a8",
-      "id": "qitnTtZ7-WQ"
+      "corFundo": "#bfdbfe",
+      "titulo": "Limpar a casa",
+      "descricao": "- Passar pano nos móveis\n- Varrer o chão\n- Passar pano no chão",
+      "id": "TG7RQ_okIAM"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
