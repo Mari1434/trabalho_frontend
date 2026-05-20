@@ -17,6 +17,13 @@
       "titulo": "Reunião de equipe",
       "descricao": "Alinhamento do projeto às 15h",
       "corFundo": "#f9a8d4"
+    },
+    {
+      "titulo": "Estudar Governança de TI",
+      "descricao": "Unidades 3 e 4",
+      "corFundo": "#f9f9a8",
+      "id": "qitnTtZ7-WQ"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
