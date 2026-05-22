@@ -1,28 +1,10 @@
 {
   "tarefas": [
     {
-      "id": "1",
-      "titulo": "Estudar React",
-      "descricao": "Revisar hooks e componentes funcionais",
-      "corFundo": "#f9f9a8"
-    },
-    {
-      "id": "2",
-      "titulo": "Fazer compras",
-      "descricao": "Leite, ovos, pão e frutas",
-      "corFundo": "#a8d8f9"
-    },
-    {
-      "id": "3",
-      "titulo": "Reunião de equipe",
-      "descricao": "Alinhamento do projeto às 15h",
-      "corFundo": "#f9a8d4"
-    },
-    {
-      "corFundo": "#bfdbfe",
-      "titulo": "Limpar a casa",
-      "descricao": "- Passar pano nos móveis\n- Varrer o chão\n- Passar pano no chão",
-      "id": "TG7RQ_okIAM"
+      "corFundo": "#e9d5ff",
+      "titulo": "Nova Tarefa (Demo)",
+      "descricao": "Exemplo de nova tarefa, após limpar db.json",
+      "id": "e3qUSrn-rF4"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
