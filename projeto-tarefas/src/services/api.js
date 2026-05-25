@@ -13,3 +13,7 @@ export async function criarTarefa(tarefa) {
   });
   return response.json();
 }
+
+export async function deletarTarefa(id) {
+  await fetch(`${BASE_URL}/tarefas/${id}`, { method: "DELETE" });
+}
