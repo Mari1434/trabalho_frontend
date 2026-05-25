@@ -1,11 +1,4 @@
 {
-  "tarefas": [
-    {
-      "corFundo": "#e9d5ff",
-      "titulo": "Nova Tarefa (Demo)",
-      "descricao": "Exemplo de nova tarefa, após limpar db.json",
-      "id": "e3qUSrn-rF4"
-    }
-  ],
+  "tarefas": [],
   "$schema": "./node_modules/json-server/schema.json"
 }

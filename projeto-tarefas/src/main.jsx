@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { TarefaProvider } from "./context/TarefaContext";
+import { TarefaProvider } from "./context/TarefaProvider";
 import './index.css';
 import App from './App.jsx';
 

@@ -1,20 +1,52 @@
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, Link, useLocation } from 'react-router-dom';
 
 export default function Layout() {
+  const location = useLocation();
+
+  const navLinks = [
+    { to: '/', label: 'Início' },
+    { to: '/nova-tarefa', label: 'Nova Tarefa' },
+    { to: '/minhas-tarefas', label: 'Minhas Tarefas' },
+  ];
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <>
+      <header className="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
 
-      <nav className="bg-blue-600 p-4 text-white shadow-md">
-        <div className="container mx-auto flex gap-6 font-semibold">
-          <Link to="/" className="hover:text-blue-200 transition-colors">Início</Link>
-          <Link to="/nova-tarefa" className="hover:text-blue-200 transition-colors">Nova Tarefa</Link>
-          <Link to="/minhas-tarefas" className="hover:text-blue-200 transition-colors">Minhas Tarefas</Link>
+          {/* Logo / Brand */}
+          <Link to="/" className="flex items-center gap-2 font-extrabold text-xl text-blue-600 tracking-tight">
+            <span className="text-2xl" aria-hidden="true">📋</span>
+            <span>TaskBoard</span>
+          </Link>
+
+          {/* Nav links */}
+          <nav className="flex items-center gap-1" aria-label="Navegação principal">
+            {navLinks.map(({ to, label }) => {
+              const isActive = location.pathname === to;
+              return (
+                <Link
+                  key={to}
+                  to={to}
+                  className={`
+                    px-4 py-2 rounded-lg text-sm transition-all duration-150
+                    ${isActive
+                      ? 'text-blue-600 font-semibold'
+                      : 'text-gray-500 font-medium hover:text-gray-900'
+                    }
+                  `}
+                >
+                  {label}
+                </Link>
+              );
+            })}
+          </nav>
         </div>
-      </nav>
+      </header>
 
-      <main className="container mx-auto p-6">
+      <main className="container mx-auto px-4 sm:px-6 py-8 min-h-screen bg-gray-50">
         <Outlet />
       </main>
-    </div>
+    </>
   );
 }

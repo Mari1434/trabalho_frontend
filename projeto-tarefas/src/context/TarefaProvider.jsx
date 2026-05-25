@@ -1,7 +1,6 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { getTarefas, criarTarefa } from "../services/api";
-
-const TarefaContext = createContext();
+import { useEffect, useState } from "react";
+import { TarefaContext } from "./TarefaContext";
+import { getTarefas, criarTarefa, deletarTarefa } from "../services/api";
 
 export function TarefaProvider({ children }) {
   const [tarefas, setTarefas] = useState([]);
@@ -15,13 +14,14 @@ export function TarefaProvider({ children }) {
     setTarefas((anterior) => [...anterior, tarefaSalva]);
   }
 
+  async function removerTarefa(id) {
+    await deletarTarefa(id);
+    setTarefas((anterior) => anterior.filter((t) => t.id !== id));
+  }
+
   return (
-    <TarefaContext.Provider value={{ tarefas, adicionarTarefa }}>
+    <TarefaContext.Provider value={{ tarefas, adicionarTarefa, removerTarefa }}>
       {children}
     </TarefaContext.Provider>
   );
-}
-
-export function useTarefas() {
-  return useContext(TarefaContext);
 }

@@ -1,6 +1,16 @@
-import { useForm } from "react-hook-form";
-import { useTarefas } from "../context/TarefaContext";
+import { useForm, useWatch } from "react-hook-form";
+import { useTarefas } from "../context/useTarefas";
 import { useNavigate } from "react-router-dom";
+
+const COR_OPTIONS = [
+  { value: "#f9f9a8", label: "Amarelo" },
+  { value: "#bfdbfe", label: "Azul" },
+  { value: "#bbf7d0", label: "Verde" },
+  { value: "#fecaca", label: "Vermelho" },
+  { value: "#e9d5ff", label: "Roxo" },
+  { value: "#fed7aa", label: "Laranja" },
+  { value: "#f9fafb", label: "Branco" },
+];
 
 export default function CriarTarefa() {
   const { adicionarTarefa } = useTarefas();
@@ -9,12 +19,15 @@ export default function CriarTarefa() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    control,
+    formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: {
       corFundo: "#f9f9a8",
     },
   });
+
+  const corSelecionada = useWatch({ control, name: "corFundo" });
 
   async function onSubmit(dados) {
     await adicionarTarefa(dados);
@@ -22,62 +35,95 @@ export default function CriarTarefa() {
   }
 
   return (
-    <section className="max-w-2xl mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">Nova Tarefa</h1>
+    <section className="max-w-xl mx-auto">
+      <h1 className="text-2xl font-bold text-gray-800 mb-6">Nova Tarefa</h1>
 
-      <form 
-        onSubmit={handleSubmit(onSubmit)} 
-        className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 flex flex-col gap-4"
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-5"
       >
-        
-        <div className="flex flex-col gap-1">
-          <label htmlFor="titulo" className="font-semibold text-gray-700">Título *</label>
+        {/* Título */}
+        <p className="flex flex-col gap-1.5">
+          <label htmlFor="titulo" className="text-sm font-semibold text-gray-700">
+            Título <span className="text-red-500">*</span>
+          </label>
           <input
             id="titulo"
             type="text"
             placeholder="Ex: Estudar React Router"
-            {...register("titulo", { 
+            {...register("titulo", {
               required: "O título é obrigatório.",
-              maxLength: { value: 50, message: "O título deve ter no máximo 50 caracteres." }
+              maxLength: { value: 50, message: "Máximo de 50 caracteres." },
             })}
-            className={`border p-3 rounded-lg focus:outline-none focus:ring-2 ${
-              errors.titulo ? 'border-red-500 focus:ring-red-200' : 'border-gray-300 focus:ring-blue-200'
+            className={`border p-3 rounded-xl text-sm focus:outline-none focus:ring-2 transition-shadow ${
+              errors.titulo
+                ? "border-red-400 focus:ring-red-100"
+                : "border-gray-200 focus:ring-blue-100 focus:border-blue-400"
             }`}
           />
-          {errors.titulo && <span className="text-red-500 text-sm font-medium">{errors.titulo.message}</span>}
-        </div>
+          {errors.titulo && (
+            <span className="text-red-500 text-xs font-medium">{errors.titulo.message}</span>
+          )}
+        </p>
 
-        <div className="flex flex-col gap-1">
-          <label htmlFor="descricao" className="font-semibold text-gray-700">Descrição</label>
+        {/* Descrição */}
+        <p className="flex flex-col gap-1.5">
+          <label htmlFor="descricao" className="text-sm font-semibold text-gray-700">
+            Descrição
+          </label>
           <textarea
             id="descricao"
             rows="4"
             placeholder="Detalhes da tarefa..."
             {...register("descricao")}
-            className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200"
+            className="border border-gray-200 p-3 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-400 resize-none transition-shadow"
           />
-        </div>
+        </p>
 
-        <div className="flex flex-col gap-1">
-          <label htmlFor="corFundo" className="font-semibold text-gray-700">Cor do Cartão</label>
-          <select
-            id="corFundo"
-            {...register("corFundo")}
-            className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200"
-          >
-            <option value="#f9f9a8">Amarelo Claro</option>
-            <option value="#bfdbfe">Azul Claro</option>
-            <option value="#bbf7d0">Verde Claro</option>
-            <option value="#fecaca">Vermelho Claro</option>
-            <option value="#e9d5ff">Roxo Claro</option>
-          </select>
-        </div>
+        {/* Cor do cartão — seletor visual */}
+        <fieldset className="flex flex-col gap-2 border-0 p-0 m-0">
+          <legend className="text-sm font-semibold text-gray-700 mb-2">Cor do Cartão</legend>
+          <menu className="flex flex-wrap gap-2 list-none p-0 m-0">
+            {COR_OPTIONS.map(({ value, label }) => (
+              <li key={value}>
+                <label title={label} className="relative cursor-pointer">
+                  <input
+                    type="radio"
+                    value={value}
+                    {...register("corFundo")}
+                    className="sr-only"
+                  />
+                  <span
+                    className={`
+                      block w-8 h-8 rounded-full border-2 transition-all
+                      ${corSelecionada === value
+                        ? "border-blue-500 scale-110 shadow-md"
+                        : "border-gray-300 hover:border-gray-400"
+                      }
+                    `}
+                    style={{ backgroundColor: value }}
+                  />
+                </label>
+              </li>
+            ))}
+          </menu>
+        </fieldset>
+
+        {/* Preview do card */}
+        <aside
+          className="p-4 rounded-xl border border-black/5 text-sm text-gray-600 italic transition-colors duration-200"
+          style={{ backgroundColor: corSelecionada }}
+        >
+          <p className="font-semibold text-gray-700 not-italic text-base mb-1">Prévia do cartão</p>
+          <p>Assim é como sua tarefa vai aparecer no mural.</p>
+        </aside>
 
         <button
           type="submit"
-          className="mt-4 bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
+          disabled={isSubmitting}
+          className="mt-1 bg-blue-600 text-white font-semibold py-3 rounded-xl hover:bg-blue-700 transition-colors shadow-sm disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          Salvar Tarefa
+          {isSubmitting ? "Salvando..." : "Salvar Tarefa"}
         </button>
       </form>
     </section>
