@@ -1,4 +1,6 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
+import logoHorizontal from "../assets/logo-horizontal.svg";
+
 
 export default function Layout() {
   const location = useLocation();
@@ -14,13 +16,10 @@ export default function Layout() {
       <header className="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
 
-          {/* Logo / Brand */}
           <Link to="/" className="flex items-center gap-2 font-extrabold text-xl text-blue-600 tracking-tight">
-            <span className="text-2xl" aria-hidden="true">📋</span>
-            <span>TaskBoard</span>
+          <img src={logoHorizontal} alt="TaskBoard" className="h-12 w-auto px-6" />
           </Link>
 
-          {/* Nav links */}
           <nav className="flex items-center gap-1" aria-label="Navegação principal">
             {navLinks.map(({ to, label }) => {
               const isActive = location.pathname === to;

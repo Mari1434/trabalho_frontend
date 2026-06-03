@@ -35,16 +35,15 @@ export default function TarefaCard({ tarefa }) {
           <footer className="mt-3 flex justify-end">
             <button
               onClick={() => setConfirmando(true)}
-              className="text-xs text-gray-400 hover:text-red-500 transition-colors sm:opacity-0 sm:group-hover:opacity-100"
+              className="text-xs text-gray-600 hover:text-red-500 transition-colors sm:opacity-0 sm:group-hover:opacity-100"
               aria-label={`Excluir tarefa ${tarefa.titulo}`}
             >
-              🗑️ Excluir
+              Excluir
             </button>
           </footer>
         </article>
       </li>
 
-      {/* Modal de confirmação */}
       {confirmando && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm px-4"

@@ -42,7 +42,6 @@ export default function CriarTarefa() {
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-5"
       >
-        {/* Título */}
         <p className="flex flex-col gap-1.5">
           <label htmlFor="titulo" className="text-sm font-semibold text-gray-700">
             Título <span className="text-red-500">*</span>
@@ -66,7 +65,6 @@ export default function CriarTarefa() {
           )}
         </p>
 
-        {/* Descrição */}
         <p className="flex flex-col gap-1.5">
           <label htmlFor="descricao" className="text-sm font-semibold text-gray-700">
             Descrição
@@ -80,7 +78,6 @@ export default function CriarTarefa() {
           />
         </p>
 
-        {/* Cor do cartão — seletor visual */}
         <fieldset className="flex flex-col gap-2 border-0 p-0 m-0">
           <legend className="text-sm font-semibold text-gray-700 mb-2">Cor do Cartão</legend>
           <menu className="flex flex-wrap gap-2 list-none p-0 m-0">
@@ -109,7 +106,6 @@ export default function CriarTarefa() {
           </menu>
         </fieldset>
 
-        {/* Preview do card */}
         <aside
           className="p-4 rounded-xl border border-black/5 text-sm text-gray-600 italic transition-colors duration-200"
           style={{ backgroundColor: corSelecionada }}

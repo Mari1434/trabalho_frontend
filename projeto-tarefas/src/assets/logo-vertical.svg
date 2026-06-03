@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 130" role="img">
+  <title>TaskBoard</title>
+  <desc>Logo vertical do TaskBoard: ícone de prancheta com checkmark e nome TaskBoard abaixo</desc>
+  <style>
+    .ic { fill: none; stroke: #2563eb; stroke-linecap: round; stroke-linejoin: round; }
+    .txt { font-family: system-ui, sans-serif; font-weight: 700; font-size: 28px; fill: #2563eb; }
+    @media (prefers-color-scheme: dark) {
+      .ic  { stroke: #60a5fa; }
+      .txt { fill: #60a5fa; }
+    }
+  </style>
+  <!-- Prancheta -->
+  <rect x="44" y="12" width="72" height="86" rx="6" class="ic" style="stroke-width:6"/>
+  <rect x="68" y="5"  width="28" height="14" rx="8" class="ic" style="stroke-width:6"/>
+  <!-- Linhas -->
+  <line x1="57" y1="35" x2="103" y2="35" class="ic" style="stroke-width:4;opacity:0.3"/>
+  <line x1="57" y1="52" x2="103" y2="52" class="ic" style="stroke-width:4;opacity:0.3"/>
+  <line x1="57" y1="69" x2="103" y2="69" class="ic" style="stroke-width:4;opacity:0.3"/>
+  <!-- Checkmark -->
+  <polyline points="57,65 77,82 105,50" class="ic" style="stroke-width:6"/>
+</svg>

@@ -1,6 +1,7 @@
 import { useTarefas } from "../context/useTarefas";
 import TarefaCard from "../components/TarefaCard";
 import { Link } from "react-router-dom";
+import tarefaVazio from "../assets/empty.svg"
 
 export default function ListaTarefas() {
   const { tarefas } = useTarefas();
@@ -17,7 +18,7 @@ export default function ListaTarefas() {
   if (tarefas.length === 0) {
     return (
       <section className="flex flex-col items-center justify-center mt-24 text-center">
-        <span className="text-6xl mb-4" aria-hidden="true">🗒️</span>
+        <img src={tarefaVazio} alt="Nenhuma tarefa encontrada" className="w-36 mb-4 opacity-80" />
         <h2 className="text-xl font-bold text-gray-700 mb-2">Nenhuma tarefa ainda</h2>
         <p className="text-gray-500 mb-6">Comece criando a sua primeira anotação!</p>
         <Link
@@ -32,7 +33,6 @@ export default function ListaTarefas() {
 
   return (
     <section className="max-w-5xl mx-auto">
-      {/* Header row */}
       <header className="flex items-center justify-between mb-6">
         <hgroup>
           <h1 className="text-2xl font-bold text-gray-800">Minhas Tarefas</h1>
@@ -49,7 +49,6 @@ export default function ListaTarefas() {
         </Link>
       </header>
 
-      {/* Masonry grid — estilo Google Keep */}
       <ul className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 list-none">
         {tarefas.map((tarefa) => (
           <TarefaCard key={tarefa.id} tarefa={tarefa} />
