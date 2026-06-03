@@ -11,7 +11,9 @@ O **TaskBoard** é uma aplicação web interativa desenvolvida em React, funcion
 Os usuários podem criar novas anotações, definir títulos e descrições, escolher cores de fundo para os cartões e visualizar todas as suas ideias em um painel responsivo estruturado em estilo alvenaria (*masonry grid*).
 
 ## 🚀 Tecnologias Utilizadas
-Com base nas configurações do projeto, as seguintes tecnologias e bibliotecas foram utilizadas:
+
+As seguintes tecnologias e bibliotecas foram utilizadas:
+
 * **React 19** - Biblioteca principal para construção da interface de usuário.
 * **Vite** - Ferramenta de build e servidor de desenvolvimento.
 * **React Router DOM 7** - Gerenciamento de rotas e navegação (Páginas: Início, Nova Tarefa e Minhas Tarefas).
@@ -50,7 +52,8 @@ npm run dev
 ````
 Acesse o link gerado no terminal (geralmente http://localhost:5173) no seu navegador.
 
-✨ Principais Funcionalidades
+## ✨ Principais Funcionalidades
+
 Roteamento: Navegação sem recarregamento da página através do React Router.
 
 Validação de Formulário: O cadastro exige título obrigatório e limites de caracteres, com feedback visual de erros.
@@ -61,7 +64,9 @@ Exclusão de Tarefas: Exclusão interativa com modal de confirmação.
 
 Estado Sincronizado: As alterações via formulário atualizam a API fake e o estado da aplicação simultaneamente usando Context API.
 
-👥 Autores
+## 👥 Autores
+
 Este projeto foi desenvolvido como trabalho prático para a disciplina de Construção de FrontEnd da faculdade pelos acadêmicos:
+
 * [@Mari1434](https://github.com/Mari1434)
 * [@Arth123Luther](https://github.com/Arth123Luther)
