@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { useTarefas } from "../context/useTarefas";
 import { useNavigate } from "react-router-dom";
+import { TriangleAlert } from "lucide-react";
 
 const COR_OPTIONS = [
   { value: "#f9f9a8", label: "Amarelo" },
@@ -15,6 +17,7 @@ const COR_OPTIONS = [
 export default function CriarTarefa() {
   const { adicionarTarefa } = useTarefas();
   const navigate = useNavigate();
+  const [erroEnvio, setErroEnvio] = useState(false);
 
   const {
     register,
@@ -30,8 +33,13 @@ export default function CriarTarefa() {
   const corSelecionada = useWatch({ control, name: "corFundo" });
 
   async function onSubmit(dados) {
-    await adicionarTarefa(dados);
-    navigate("/minhas-tarefas");
+    setErroEnvio(false);
+    try {
+      await adicionarTarefa(dados);
+      navigate("/minhas-tarefas");
+    } catch {
+      setErroEnvio(true);
+    }
   }
 
   return (
@@ -42,6 +50,19 @@ export default function CriarTarefa() {
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-5"
       >
+        {erroEnvio && (
+          <div
+            role="alert"
+            className="flex items-start gap-3 p-4 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700"
+          >
+            <TriangleAlert className="w-4 h-4 mt-0.5 shrink-0 text-red-400" aria-hidden="true" />
+            <p>
+              Não foi possível salvar a tarefa. Verifique se o servidor está
+              rodando e tente novamente.
+            </p>
+          </div>
+        )}
+
         <p className="flex flex-col gap-1.5">
           <label htmlFor="titulo" className="text-sm font-semibold text-gray-700">
             Título <span className="text-red-500">*</span>

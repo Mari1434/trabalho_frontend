@@ -1,10 +1,15 @@
 import { useTarefas } from "../context/useTarefas";
 import TarefaCard from "../components/TarefaCard";
+import ErroAPI from "../components/ErroAPI";
 import { Link } from "react-router-dom";
-import tarefaVazio from "../assets/empty.svg"
+import tarefaVazio from "../assets/empty.svg";
 
 export default function ListaTarefas() {
-  const { tarefas } = useTarefas();
+  const { tarefas, erroAPI, carregarTarefas } = useTarefas();
+
+  if (erroAPI) {
+    return <ErroAPI onRetry={carregarTarefas} />;
+  }
 
   if (!tarefas) {
     return (
@@ -37,7 +42,7 @@ export default function ListaTarefas() {
         <hgroup>
           <h1 className="text-2xl font-bold text-gray-800">Minhas Tarefas</h1>
           <p className="text-sm text-gray-500 mt-0.5">
-            {tarefas.length} {tarefas.length === 1 ? 'nota' : 'notas'}
+            {tarefas.length} {tarefas.length === 1 ? "nota" : "notas"}
           </p>
         </hgroup>
         <Link

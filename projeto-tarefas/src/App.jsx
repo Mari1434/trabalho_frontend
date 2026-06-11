@@ -3,6 +3,7 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import CriarTarefa from './pages/CriarTarefa';
 import ListaTarefas from './pages/ListaTarefas';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="nova-tarefa" element={<CriarTarefa />} />
           <Route path="minhas-tarefas" element={<ListaTarefas />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -3,10 +3,22 @@ import { TarefaContext } from "./TarefaContext";
 import { getTarefas, criarTarefa, deletarTarefa } from "../services/api";
 
 export function TarefaProvider({ children }) {
-  const [tarefas, setTarefas] = useState([]);
+  const [tarefas, setTarefas] = useState(null);
+  const [erroAPI, setErroAPI] = useState(false);
+
+  function carregarTarefas() {
+    setErroAPI(false);
+    setTarefas(null);
+    getTarefas()
+      .then((dados) => setTarefas(dados))
+      .catch(() => {
+        setErroAPI(true);
+        setTarefas([]);
+      });
+  }
 
   useEffect(() => {
-    getTarefas().then((dados) => setTarefas(dados));
+    carregarTarefas();
   }, []);
 
   async function adicionarTarefa(novaTarefa) {
@@ -20,7 +32,7 @@ export function TarefaProvider({ children }) {
   }
 
   return (
-    <TarefaContext.Provider value={{ tarefas, adicionarTarefa, removerTarefa }}>
+    <TarefaContext.Provider value={{ tarefas, erroAPI, carregarTarefas, adicionarTarefa, removerTarefa }}>
       {children}
     </TarefaContext.Provider>
   );

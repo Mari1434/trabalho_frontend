@@ -1,13 +1,16 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { TarefaProvider } from "./context/TarefaProvider";
+import ErrorBoundary from './components/CheckErro';
 import './index.css';
 import App from './App.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <TarefaProvider>
-      <App />
-    </TarefaProvider>
+    <ErrorBoundary>
+      <TarefaProvider>
+        <App />
+      </TarefaProvider>
+    </ErrorBoundary>
   </StrictMode>
-)
+);
