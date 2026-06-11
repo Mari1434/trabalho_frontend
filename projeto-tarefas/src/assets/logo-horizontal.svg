@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 60" role="img">
+  <title>TaskBoard</title>
+  <desc>Logo horizontal do TaskBoard: ícone de prancheta com checkmark e nome TaskBoard</desc>
+  <style>
+    .ic { fill: none; stroke: #2563eb; stroke-linecap: round; stroke-linejoin: round; }
+    .txt { font-family: system-ui, sans-serif; font-weight: 700; font-size: 24px; fill: #2563eb; }
+    @media (prefers-color-scheme: dark) {
+      .ic  { stroke: #60a5fa; }
+      .txt { fill: #60a5fa; }
+    }
+  </style>
+  <!-- Prancheta -->
+  <rect x="4" y="10" width="40" height="47" rx="5" class="ic" style="stroke-width:4"/>
+  <rect x="16" y="6"  width="16" height="8"  rx="4" class="ic" style="stroke-width:4"/>
+  <!-- Linhas -->
+  <line x1="11" y1="25" x2="37" y2="25" class="ic" style="stroke-width:3;opacity:0.3"/>
+  <line x1="11" y1="35" x2="37" y2="35" class="ic" style="stroke-width:3;opacity:0.3"/>
+  <line x1="11" y1="45" x2="37" y2="45" class="ic" style="stroke-width:3;opacity:0.3"/>
+  <!-- Checkmark -->
+  <polyline points="12,45 22,55 36,35" class="ic" style="stroke-width:4" transform="translate(0,-6)"/>
+  <!-- Nome -->
+  <text x="54" y="42" class="txt">Task<tspan fill="#1d4ed8">Board</tspan></text>
+</svg>
